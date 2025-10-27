@@ -4,7 +4,7 @@
 component "eks" {
   for_each = var.regions
 
-  source = "./aws-eks-fargate"
+  source = "./aws-eks-automode"
 
   inputs = {
     vpc_id = var.vpc_id

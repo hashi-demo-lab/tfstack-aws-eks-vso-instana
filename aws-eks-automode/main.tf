@@ -18,7 +18,6 @@ module "eks" {
 
   enable_irsa = false
 
-  # Fargate profiles use the cluster primary security group so these are not utilized
   create_cloudwatch_log_group = false #disabling logs for cost - lab only
   kms_key_deletion_window_in_days = 7
 
