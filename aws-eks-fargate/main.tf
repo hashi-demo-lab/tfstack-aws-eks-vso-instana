@@ -31,12 +31,22 @@ module "eks" {
         { namespace = "vault*" },
         { namespace = "application*" }
       ]
+      timeouts = {
+                  create = "30m"
+                  update = "30m"
+                  delete = "30m"
+                }
     }
     kube_system = {
       name = "kube-system"
       selectors = [
         { namespace = "kube-system" }
       ]
+      timeouts = {
+                  create = "30m"
+                  update = "30m"
+                  delete = "30m"
+                }
     }
   }
   
