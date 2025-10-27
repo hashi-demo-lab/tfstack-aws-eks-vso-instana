@@ -28,7 +28,7 @@ module "eks" {
         { namespace = "product*" },
         { namespace = "consul*" },
         { namespace = "frontend*" },
-        { namespace = "payments*" }
+        { namespace = "payments*" },
         { namespace = "application*" }
       ]
     }
