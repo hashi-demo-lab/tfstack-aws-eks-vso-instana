@@ -11,7 +11,7 @@ component "eks" {
     vpc_id = var.vpc_id
     subnet_ids = var.private_subnets
     kubernetes_version = var.kubernetes_version
-    cluster_name = var.cluster_name
+    name = var.cluster_name
     tfc_hostname = var.tfc_hostname
     tfc_kubernetes_audience = var.tfc_kubernetes_audience
     eks_clusteradmin_arn = var.eks_clusteradmin_arn
