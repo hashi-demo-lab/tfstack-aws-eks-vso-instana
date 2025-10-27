@@ -61,14 +61,14 @@ provider "aws" "configurations" {
 
 
 
-# provider "kubernetes" "configurations" {
-#   for_each = var.regions
-#   config { 
-#     host                   = component.eks[each.value].cluster_endpoint
-#     cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
-#     token   = component.eks[each.value].eks_token
-#   }
-# }
+provider "kubernetes" "configurations" {
+  for_each = var.regions
+  config { 
+    host                   = component.eks[each.value].cluster_endpoint
+    cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
+    token   = component.eks[each.value].eks_token
+  }
+}
 
 # provider "kubernetes" "oidc_configurations" {
 #   for_each = var.regions
