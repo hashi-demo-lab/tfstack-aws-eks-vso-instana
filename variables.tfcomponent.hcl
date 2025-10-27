@@ -32,14 +32,6 @@ variable "role_arn" {
   type = string
 }
 
-variable "vpc_name" {
-  type = string 
-}
-
-variable "vpc_cidr" {
-  type = string
-}
-
 variable "kubernetes_version" {
   type = string
   default = "1.29"
