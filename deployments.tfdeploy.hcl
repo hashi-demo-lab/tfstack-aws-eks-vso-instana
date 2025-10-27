@@ -12,7 +12,7 @@ upstream_input "landingzone_stack" {
 }
 
 
-deployment "development" {
+deployment "eks-team1-simon-dev" {
   inputs = {
     aws_identity_token = identity_token.aws.jwt
     role_arn            = "arn:aws:iam::855831148133:role/tfstacks-role"
@@ -22,7 +22,7 @@ deployment "development" {
     private_subnets = upstream_input.landingzone_stack.private_subnets_team1
 
     #EKS Cluster
-    kubernetes_version = "1.30"
+    kubernetes_version = "1.34"
     cluster_name = "eksdev02"
     
     #EKS OIDC
@@ -34,7 +34,7 @@ deployment "development" {
 
     #K8S
     k8s_identity_token = identity_token.k8s.jwt
-    namespace = "hashibank"
+    namespace = "application"
 
   }
 }

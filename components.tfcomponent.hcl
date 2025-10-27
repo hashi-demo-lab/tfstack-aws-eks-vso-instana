@@ -10,7 +10,7 @@ component "eks" {
     vpc_id = var.vpc_id
     private_subnets = var.private_subnets
     kubernetes_version = var.kubernetes_version
-    name = var.cluster_name
+    cluster_name = var.cluster_name
     tfc_hostname = var.tfc_hostname
     tfc_kubernetes_audience = var.tfc_kubernetes_audience
     enable_cluster_creator_admin_permissions = true

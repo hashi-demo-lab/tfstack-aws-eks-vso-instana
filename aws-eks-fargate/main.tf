@@ -29,6 +29,7 @@ module "eks" {
         { namespace = "consul*" },
         { namespace = "frontend*" },
         { namespace = "payments*" }
+        { namespace = "application*" }
       ]
     }
     kube_system = {
@@ -39,11 +40,11 @@ module "eks" {
     }
   }
   
-    timeouts = {
-      create = "30m"
-      update = "30m"
-      delete = "30m"
-    }
+  timeouts = {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
   
   access_entries = {
       # One access entry with a policy associated
