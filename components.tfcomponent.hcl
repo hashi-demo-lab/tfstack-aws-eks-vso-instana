@@ -9,7 +9,7 @@ component "eks" {
 
   inputs = {
     vpc_id = var.vpc_id
-    private_subnets = var.private_subnets
+    subnet_ids = var.private_subnets
     kubernetes_version = var.kubernetes_version
     cluster_name = var.cluster_name
     tfc_hostname = var.tfc_hostname
