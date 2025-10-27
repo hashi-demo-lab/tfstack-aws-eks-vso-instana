@@ -18,6 +18,9 @@ deployment "development" {
     role_arn            = "arn:aws:iam::855831148133:role/tfstacks-role"
     regions             = ["ap-southeast-2"]
 
+    vpc_id = upstream_input.landingzone_stack.outputs.vpc_id_team1
+    private_subnets = upstream_input.landingzone_stack.outputs.private_subnets_team1
+
     #EKS Cluster
     kubernetes_version = "1.30"
     cluster_name = "eksdev02"

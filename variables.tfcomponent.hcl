@@ -2,6 +2,14 @@ variable "regions" {
   type = set(string)
 }
 
+variable "vpc_id" {
+  type = string
+}
+
+variable "private_subnets" {
+  type = set(string)
+}
+
 variable "aws_identity_token" {
   type = string
   ephemeral = true

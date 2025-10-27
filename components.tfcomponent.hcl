@@ -8,8 +8,8 @@ component "eks" {
   version = "21.6.1"
 
   inputs = {
-    vpc_id = component.vpc[each.value].vpc_id
-    private_subnets = component.vpc[each.value].private_subnets
+    vpc_id = var.vpc_id
+    private_subnets = var.private_subnets
     kubernetes_version = var.kubernetes_version
     cluster_name = var.cluster_name
     tfc_hostname = var.tfc_hostname
