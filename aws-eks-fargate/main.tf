@@ -20,7 +20,8 @@ module "eks" {
 
   # Fargate profiles use the cluster primary security group so these are not utilized
   create_node_security_group    = false
-  enabled_log_types = [] #disabling logs for cost - lab only
+  create_cloudwatch_log_group = false #disabling logs for cost - lab only
+  kms_key_deletion_window_in_days = 7
 
 
   fargate_profiles = {
