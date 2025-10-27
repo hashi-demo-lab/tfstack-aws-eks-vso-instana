@@ -24,6 +24,7 @@ component "eks" {
     kubernetes  = provider.kubernetes.this
     time = provider.time.this
     tls = provider.tls.this
+    null = provider.null.this
   }
 }
 

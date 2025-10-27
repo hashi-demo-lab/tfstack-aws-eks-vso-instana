@@ -92,3 +92,4 @@ provider "time" "this" {}
 provider "tls" "this" {}
 provider "local" "this" {}
 provider "random" "this" {}
+provider "null" "this" {}
