@@ -28,10 +28,7 @@ module "eks" {
     app_wildcard = {
       selectors = [
         { namespace = "hashibank*" },
-        { namespace = "product*" },
-        { namespace = "consul*" },
-        { namespace = "frontend*" },
-        { namespace = "payments*" },
+        { namespace = "vault*" },
         { namespace = "application*" }
       ]
     }
