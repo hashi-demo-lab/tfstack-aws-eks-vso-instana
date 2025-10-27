@@ -36,7 +36,7 @@ deployment "eks-team1-simon-dev" {
     namespace = "application"
 
   }
-  destroy = false
+  destroy = true
 }
 
 # deployment "prod" {
