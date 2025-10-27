@@ -29,20 +29,20 @@ component "eks" {
 }
 
 # # Update K8s role-binding
-# component "k8s-rbac" {
-#   for_each = var.regions
+component "k8s-rbac" {
+  for_each = var.regions
 
-#   source = "./k8s-rbac"
+  source = "./k8s-rbac"
 
-#   inputs = {
-#     cluster_endpoint = component.eks[each.value].cluster_endpoint
-#     tfc_organization_name = var.tfc_organization_name
-#   }
+  inputs = {
+    cluster_endpoint = component.eks[each.value].cluster_endpoint
+    tfc_organization_name = var.tfc_organization_name
+  }
 
-#   providers = {
-#     kubernetes  = provider.kubernetes.configurations[each.value]
-#   }
-# }
+  providers = {
+    kubernetes  = provider.kubernetes.configurations[each.value]
+  }
+}
 
 
 # # K8s Addons - aws load balancer controller, coredns, vpc-cni, kube-proxy
