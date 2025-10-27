@@ -4,8 +4,7 @@
 component "eks" {
   for_each = var.regions
 
-  source  = "terraform-aws-modules/eks/aws"
-  version = "21.6.1"
+  source = "./aws-eks-fargate"
 
   inputs = {
     vpc_id = var.vpc_id
@@ -15,24 +14,8 @@ component "eks" {
     tfc_hostname = var.tfc_hostname
     tfc_kubernetes_audience = var.tfc_kubernetes_audience
     enable_cluster_creator_admin_permissions = true
-
-    access_entries = {
-        # One access entry with a policy associated
-        single = {
-          kubernetes_groups = []
-          principal_arn     = var.eks_clusteradmin_arn
-          username          = var.eks_clusteradmin_username
-
-          policy_associations = {
-            single = {
-              policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-              access_scope = {
-                type       = "cluster"
-              }
-            }
-          }
-        }
-      }
+    eks_clusteradmin_arn = var.eks_clusteradmin_arn
+    eks_clusteradmin_username = var.eks_clusteradmin_username
   }
 
   providers = {
