@@ -20,6 +20,8 @@ module "eks" {
 
   # Fargate profiles use the cluster primary security group so these are not utilized
   create_node_security_group    = false
+  enabled_log_types = [] #disabling logs for cost - lab only
+
 
   fargate_profiles = {
     app_wildcard = {
