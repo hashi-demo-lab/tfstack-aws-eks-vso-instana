@@ -8,7 +8,7 @@ identity_token "k8s" {
 
 upstream_input "landingzone_stack" {
   type   = "stack"
-  source = "app.terraform.io/hashicorp/hackathon/tfstack-aws-landing-zone"
+  source = "app.terraform.io/hashi-demos-apj/hackathon/tfstack-aws-landing-zone"
 }
 
 
