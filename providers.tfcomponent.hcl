@@ -70,16 +70,16 @@ provider "kubernetes" "configurations" {
   }
 }
 
-# provider "helm" "configurations" {
-#   for_each = var.regions
-#   config {
-#     kubernetes {
-#       host                   = component.eks[each.value].cluster_endpoint
-#       cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
-#       token                  = component.eks[each.value].eks_token # From aws_eks_cluster_auth
-#     }
-#   }
-# }
+provider "helm" "configurations" {
+  for_each = var.regions
+  config {
+    kubernetes {
+      host                   = component.eks[each.value].cluster_endpoint
+      cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
+      token                  = component.eks[each.value].eks_token
+    }
+  }
+}
 
 # provider "kubernetes" "oidc_configurations" {
 #   for_each = var.regions
