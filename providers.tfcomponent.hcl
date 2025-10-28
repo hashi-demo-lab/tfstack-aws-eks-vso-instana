@@ -104,6 +104,7 @@ provider "helm" "configurations" {
 
 provider "cloudinit" "this" {}
 provider "kubernetes" "this" {}
+provider "helm" "this" {}
 provider "time" "this" {}
 provider "tls" "this" {}
 provider "local" "this" {}

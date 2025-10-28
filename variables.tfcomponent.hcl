@@ -74,3 +74,58 @@ variable "eks_clusteradmin_username" {
   type = string
 }
 
+# Vault Secrets Operator (VSO) variables
+variable "vso_namespace" {
+  description = "Namespace for Vault Secrets Operator"
+  type        = string
+  default     = "vault-secrets-operator-system"
+}
+
+variable "vso_chart_version" {
+  description = "Helm chart version for Vault Secrets Operator"
+  type        = string
+  default     = "0.10.0"
+}
+
+variable "vso_replicas" {
+  description = "Number of VSO controller replicas"
+  type        = number
+  default     = 1
+}
+
+variable "vault_address" {
+  description = "Address of the Vault server"
+  type        = string
+  default     = ""
+}
+
+variable "vault_connection_name" {
+  description = "Name of the VaultConnection resource"
+  type        = string
+  default     = "default"
+}
+
+variable "vault_skip_tls_verify" {
+  description = "Skip TLS verification for Vault connection"
+  type        = bool
+  default     = false
+}
+
+variable "vault_auth_mount" {
+  description = "Vault auth mount path for Kubernetes authentication"
+  type        = string
+  default     = ""
+}
+
+variable "vault_kubernetes_role" {
+  description = "Vault Kubernetes auth role name"
+  type        = string
+  default     = "vso"
+}
+
+variable "vault_service_account" {
+  description = "Kubernetes service account for Vault authentication"
+  type        = string
+  default     = "default"
+}
+

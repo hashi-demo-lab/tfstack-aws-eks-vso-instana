@@ -44,6 +44,29 @@ component "k8s-rbac" {
   }
 }
 
+# Vault Secrets Operator (VSO)
+component "vault-secrets-operator" {
+  for_each = var.regions
+
+  source = "./hashi-vault-vso"
+
+  inputs = {
+    vso_namespace                   = var.vso_namespace
+    vso_chart_version               = var.vso_chart_version
+    vso_replicas                    = var.vso_replicas
+    vault_address                   = var.vault_address
+    vault_connection_name           = var.vault_connection_name
+    vault_skip_tls_verify           = var.vault_skip_tls_verify
+    vault_auth_mount                = var.vault_auth_mount
+    vault_kubernetes_role           = var.vault_kubernetes_role
+    vault_service_account           = var.vault_service_account
+  }
+
+  providers = {
+    kubernetes = provider.kubernetes.configurations[each.value]
+    helm       = provider.helm.configurations[each.value]
+  }
+}
 
 # # K8s Addons - aws load balancer controller, coredns, vpc-cni, kube-proxy
 # component "k8s-addons" {
