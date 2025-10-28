@@ -7,24 +7,24 @@ component "eks" {
   source = "./aws-eks-automode"
 
   inputs = {
-    vpc_id = var.vpc_id
-    private_subnets = var.private_subnets
-    kubernetes_version = var.kubernetes_version
-    cluster_name = var.cluster_name
-    tfc_hostname = var.tfc_hostname
-    tfc_kubernetes_audience = var.tfc_kubernetes_audience
+    vpc_id                                   = var.vpc_id
+    private_subnets                          = var.private_subnets
+    kubernetes_version                       = var.kubernetes_version
+    cluster_name                             = var.cluster_name
+    tfc_hostname                             = var.tfc_hostname
+    tfc_kubernetes_audience                  = var.tfc_kubernetes_audience
     enable_cluster_creator_admin_permissions = true
-    eks_clusteradmin_arn = var.eks_clusteradmin_arn
-    eks_clusteradmin_username = var.eks_clusteradmin_username
+    eks_clusteradmin_arn                     = var.eks_clusteradmin_arn
+    eks_clusteradmin_username                = var.eks_clusteradmin_username
   }
 
   providers = {
-    aws    = provider.aws.configurations[each.value]
-    cloudinit = provider.cloudinit.this
-    kubernetes  = provider.kubernetes.this
-    time = provider.time.this
-    tls = provider.tls.this
-    null = provider.null.this
+    aws        = provider.aws.configurations[each.value]
+    cloudinit  = provider.cloudinit.this
+    kubernetes = provider.kubernetes.this
+    time       = provider.time.this
+    tls        = provider.tls.this
+    null       = provider.null.this
   }
 }
 
@@ -35,12 +35,12 @@ component "k8s-rbac" {
   source = "./k8s-rbac"
 
   inputs = {
-    cluster_endpoint = component.eks[each.value].cluster_endpoint
+    cluster_endpoint      = component.eks[each.value].cluster_endpoint
     tfc_organization_name = var.tfc_organization_name
   }
 
   providers = {
-    kubernetes  = provider.kubernetes.configurations[each.value]
+    kubernetes = provider.kubernetes.configurations[each.value]
   }
 }
 

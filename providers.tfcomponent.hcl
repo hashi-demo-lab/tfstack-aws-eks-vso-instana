@@ -15,34 +15,34 @@ required_providers {
   }
 
   time = {
-    source = "hashicorp/time"
+    source  = "hashicorp/time"
     version = "~> 0.1"
   }
-  
+
   tls = {
-    source = "hashicorp/tls"
+    source  = "hashicorp/tls"
     version = "~> 4.0"
   }
 
   helm = {
-    source = "hashicorp/helm"
+    source  = "hashicorp/helm"
     version = "~> 2.12"
   }
 
   local = {
-    source = "hashicorp/local"
+    source  = "hashicorp/local"
     version = "~> 2.4"
   }
 
   random = {
-    source = "hashicorp/random"
+    source  = "hashicorp/random"
     version = "~> 3.7.0"
   }
 
   null = {
-      source  = "hashicorp/null"
-      version = ">= 3.0"
-    }
+    source  = "hashicorp/null"
+    version = ">= 3.0"
+  }
 
 }
 
@@ -53,7 +53,7 @@ provider "aws" "configurations" {
     region = each.value
 
     assume_role_with_web_identity {
-      role_arn                = var.role_arn
+      role_arn           = var.role_arn
       web_identity_token = var.aws_identity_token
     }
   }
@@ -63,23 +63,23 @@ provider "aws" "configurations" {
 
 provider "kubernetes" "configurations" {
   for_each = var.regions
-  config { 
+  config {
     host                   = component.eks[each.value].cluster_endpoint
     cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
-    token   = component.eks[each.value].eks_token
+    token                  = component.eks[each.value].eks_token
   }
 }
 
-provider "helm" "configurations" {
-  for_each = var.regions
-  config {
-    kubernetes {
-      host                   = component.eks[each.value].cluster_endpoint
-      cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
-      token                  = component.eks[each.value].eks_token  # From aws_eks_cluster_auth
-    }
-  }
-}
+# provider "helm" "configurations" {
+#   for_each = var.regions
+#   config {
+#     kubernetes {
+#       host                   = component.eks[each.value].cluster_endpoint
+#       cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
+#       token                  = component.eks[each.value].eks_token # From aws_eks_cluster_auth
+#     }
+#   }
+# }
 
 # provider "kubernetes" "oidc_configurations" {
 #   for_each = var.regions

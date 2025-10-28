@@ -11,19 +11,19 @@ variable "private_subnets" {
 }
 
 variable "aws_identity_token" {
-  type = string
+  type      = string
   ephemeral = true
   sensitive = true
 }
 
 variable "k8s_identity_token" {
-  type = string
+  type      = string
   ephemeral = true
   sensitive = true
 }
 
 variable "workload_idp_name" {
-  type = string
+  type    = string
   default = "tfstacks-workload-identity-provider"
 }
 
@@ -41,17 +41,17 @@ variable "role_arn" {
 }
 
 variable "kubernetes_version" {
-  type = string
+  type    = string
   default = "1.29"
 }
 
 variable "cluster_name" {
-  type = string
+  type    = string
   default = "eks-cluster"
 }
 
 variable "namespace" {
-  type = string
+  type    = string
   default = "hashibank"
 }
 
