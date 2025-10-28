@@ -16,10 +16,10 @@ identity_token "k8s_team3" {
 }
 ###
 
-upstream_input "landingzone_stack" {
-  type   = "stack"
-  source = "app.terraform.io/hashi-demos-apj/hackathon/tfstack-aws-landing-zone"
-}
+# upstream_input "landingzone_stack" {
+#   type   = "stack"
+#   source = "app.terraform.io/hashi-demos-apj/hackathon/tfstack-aws-landing-zone"
+# }
 
 deployment "eks-team1-simon-dev" {
   inputs = {
@@ -27,8 +27,11 @@ deployment "eks-team1-simon-dev" {
     role_arn           = "arn:aws:iam::855831148133:role/tfstacks-role"
     regions            = ["ap-southeast-2"]
 
-    vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
-    private_subnets = upstream_input.landingzone_stack.private_subnets_team1
+    # vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
+    # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
+
+    vpc_id          = "vpc-078cb1d7b6ed781eb"
+    private_subnets = ["subnet-04183d2a87d1d9b5a","subnet-028b7528f2e09d2af","subnet-0f573d24383ac66e9"]
 
     #EKS Cluster
     kubernetes_version = "1.34"
@@ -112,5 +115,6 @@ deployment "eks-team3-pranit-dev" {
     namespace          = "application"
 
   }
+  #Uncomment to destroy the deployment
   # destroy = true
 }
