@@ -52,6 +52,37 @@ deployment "eks-team1-simon-dev" {
   destroy = false
 }
 
+deployment "eks-team2-jessica-dev" {
+  inputs = {
+    aws_identity_token = identity_token.aws.jwt
+    role_arn           = "arn:aws:iam::034362039150:role/stacks-jessicaorg-ahm-hackathon"
+    regions            = ["ap-southeast-1"]
+
+    # vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
+    # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
+
+    vpc_id          = "pc-0819bfc17f32c7029"
+    private_subnets = ["subnet-00a17be3b7e472148","subnet-079327335a02c1d41","subnet-0833c0c015c6e6e7b"]
+
+    #EKS Cluster
+    kubernetes_version = "1.34"
+    cluster_name       = "eks-team2-dev1"
+
+    #EKS OIDC
+    tfc_kubernetes_audience   = "k8s.workload.identity"
+    tfc_hostname              = "https://app.terraform.io"
+    tfc_organization_name     = "hashi-demos-apj"
+    eks_clusteradmin_arn      = "arn:aws:iam::034362039150:role/aws_jessica.ang_test-developer"
+    eks_clusteradmin_username = "aws_jessica.ang_test-developer"
+
+    #K8S
+    k8s_identity_token = identity_token.k8s.jwt
+    namespace          = "application"
+
+  }
+  destroy = false
+}
+
 # deployment "prod" {
 #   inputs = {
 #     aws_identity_token = identity_token.aws.jwt
