@@ -61,7 +61,7 @@ deployment "eks-team2-jessica-dev" {
     # vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
     # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
 
-    vpc_id          = "pc-0819bfc17f32c7029"
+    vpc_id          = "vpc-0819bfc17f32c7029"
     private_subnets = ["subnet-00a17be3b7e472148","subnet-079327335a02c1d41","subnet-0833c0c015c6e6e7b"]
 
     #EKS Cluster
