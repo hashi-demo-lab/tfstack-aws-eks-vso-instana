@@ -26,7 +26,21 @@ identity_token "k8s_team3" {
 # Step 3: Define Deployment Groups and Assign Rules
 # ----------------------------------------------------
 
-deployment_group "dev_group" {
+deployment_group "dev_group_simon" {
+  # The dev group uses the auto-approval rule.
+  auto_approve_checks = [
+    deployment_auto_approve.safe_dev_plans
+  ]
+}
+
+deployment_group "dev_group_jessica" {
+  # The dev group uses the auto-approval rule.
+  auto_approve_checks = [
+    deployment_auto_approve.safe_dev_plans
+  ]
+}
+
+deployment_group "dev_group_pranit" {
   # The dev group uses the auto-approval rule.
   auto_approve_checks = [
     deployment_auto_approve.safe_dev_plans
@@ -42,7 +56,7 @@ deployment_auto_approve "safe_dev_plans" {
 }
 
 deployment "eks-team1-simon-dev" {
-  deployment_group = deployment_group.dev_group
+  deployment_group = deployment_group.dev_group_simon
   inputs = {
     aws_identity_token = identity_token.aws.jwt
     role_arn           = "arn:aws:iam::855831148133:role/tfstacks-role"
@@ -74,7 +88,7 @@ deployment "eks-team1-simon-dev" {
 }
 
 deployment "eks-team2-jessica-dev" {
-  deployment_group = deployment_group.dev_group
+  deployment_group = deployment_group.dev_group_jessica
   inputs = {
     aws_identity_token = identity_token.aws.jwt
     role_arn           = "arn:aws:iam::034362039150:role/stacks-jessicaorg-ahm-hackathon"
@@ -142,7 +156,7 @@ deployment "eks-team2-jessica-dev" {
 
 #Deployment for Team 3 - Pranit Raje
 deployment "eks-team3-pranit-dev" {
-  deployment_group = deployment_group.dev_group
+  deployment_group = deployment_group.dev_group_pranit
   inputs = {
     aws_identity_token = identity_token.aws_team3.jwt
     role_arn           = "arn:aws:iam::124355636080:role/Terraform-service-account-role"
