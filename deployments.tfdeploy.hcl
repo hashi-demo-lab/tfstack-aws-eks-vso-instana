@@ -71,6 +71,7 @@ deployment "eks-team1-simon-dev" {
     #EKS Cluster
     kubernetes_version = "1.34"
     cluster_name       = "eks-team1-dev1"
+    enable_irsa       = true
 
     #EKS OIDC
     tfc_kubernetes_audience   = "k8s.workload.identity"

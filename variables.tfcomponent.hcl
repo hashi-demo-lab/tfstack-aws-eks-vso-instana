@@ -129,3 +129,9 @@ variable "vault_service_account" {
   default     = "default"
 }
 
+variable "enable_irsa" {
+  description = "Enable IAM Roles for Service Accounts (IRSA)"
+  type        = bool
+  default     = false
+}
+

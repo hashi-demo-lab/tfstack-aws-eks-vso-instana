@@ -16,6 +16,7 @@ component "eks" {
     enable_cluster_creator_admin_permissions = true
     eks_clusteradmin_arn                     = var.eks_clusteradmin_arn
     eks_clusteradmin_username                = var.eks_clusteradmin_username
+    enable_irsa                              = var.enable_irsa
   }
 
   providers = {

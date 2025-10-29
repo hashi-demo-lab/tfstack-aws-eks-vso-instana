@@ -16,7 +16,7 @@ module "eks" {
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnets
 
-  enable_irsa = false
+  enable_irsa = var.enable_irsa
 
   create_cloudwatch_log_group = false #disabling logs for cost - lab only
   kms_key_deletion_window_in_days = 7
