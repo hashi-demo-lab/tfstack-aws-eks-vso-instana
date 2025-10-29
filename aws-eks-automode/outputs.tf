@@ -32,3 +32,8 @@ output "eks_token" {
   value = data.aws_eks_cluster_auth.upstream_auth.token
   sensitive = true
 }
+
+output "oidc_provider_config_status" {
+  description = "OIDC provider configuration status"
+  value       = aws_eks_identity_provider_config.oidc_config.status
+}

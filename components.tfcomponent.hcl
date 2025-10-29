@@ -35,8 +35,9 @@ component "k8s-rbac" {
   source = "./k8s-rbac"
 
   inputs = {
-    cluster_endpoint      = component.eks[each.value].cluster_endpoint
-    tfc_organization_name = var.tfc_organization_name
+    cluster_endpoint         = component.eks[each.value].cluster_endpoint
+    tfc_organization_name    = var.tfc_organization_name
+    oidc_provider_status     = component.eks[each.value].oidc_provider_config_status
   }
 
   providers = {
