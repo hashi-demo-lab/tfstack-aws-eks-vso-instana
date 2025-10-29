@@ -91,6 +91,7 @@ component "k8s-addons" {
     helm  = provider.helm.oidc_configurations[each.value]
     aws    = provider.aws.configurations[each.value]
     time = provider.time.this
+    random = provider.random.this
   }
 }
 
