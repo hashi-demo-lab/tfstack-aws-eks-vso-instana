@@ -1,4 +1,5 @@
 # #Install IBM Instana Agent via Helm
+<<<<<<< HEAD
 
 resource "aws_eks_addon" "instana" {
   cluster_name = var.cluster_name
@@ -6,6 +7,8 @@ resource "aws_eks_addon" "instana" {
 }
 
 
+=======
+>>>>>>> 3a38aac0d2367961cf53a92b859b4db7c0c1732e
 # resource "helm_release" "ibm_instana_agent" {
 #   name       = "instana-agent"
 #   repository = "https://agents.instana.io/helm"

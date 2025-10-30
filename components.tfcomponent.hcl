@@ -36,9 +36,9 @@ component "k8s-rbac" {
   source = "./k8s-rbac"
 
   inputs = {
-    cluster_endpoint         = component.eks[each.value].cluster_endpoint
-    tfc_organization_name    = var.tfc_organization_name
-    oidc_provider_status     = component.eks[each.value].oidc_provider_config_status
+    cluster_endpoint      = component.eks[each.value].cluster_endpoint
+    tfc_organization_name = var.tfc_organization_name
+    oidc_provider_status  = component.eks[each.value].oidc_provider_config_status
   }
 
   providers = {
@@ -53,15 +53,15 @@ component "vault-secrets-operator" {
   source = "./hashi-vault-vso"
 
   inputs = {
-    vso_namespace                   = var.vso_namespace
-    vso_chart_version               = var.vso_chart_version
-    vso_replicas                    = var.vso_replicas
-    vault_address                   = var.vault_address
-    vault_connection_name           = var.vault_connection_name
-    vault_skip_tls_verify           = var.vault_skip_tls_verify
-    vault_auth_mount                = var.vault_auth_mount
-    vault_kubernetes_role           = var.vault_kubernetes_role
-    vault_service_account           = var.vault_service_account
+    vso_namespace         = var.vso_namespace
+    vso_chart_version     = var.vso_chart_version
+    vso_replicas          = var.vso_replicas
+    vault_address         = var.vault_address
+    vault_connection_name = var.vault_connection_name
+    vault_skip_tls_verify = var.vault_skip_tls_verify
+    vault_auth_mount      = var.vault_auth_mount
+    vault_kubernetes_role = var.vault_kubernetes_role
+    vault_service_account = var.vault_service_account
   }
 
   providers = {
@@ -77,22 +77,22 @@ component "k8s-addons" {
   source = "./aws-eks-addon"
 
   inputs = {
-    cluster_name = component.eks[each.value].cluster_name
-    vpc_id = var.vpc_id
-    private_subnets = var.private_subnets
-    cluster_endpoint = component.eks[each.value].cluster_endpoint
-    cluster_version = component.eks[each.value].cluster_version
-    oidc_provider_arn = component.eks[each.value].oidc_provider_arn
+    cluster_name                       = component.eks[each.value].cluster_name
+    vpc_id                             = var.vpc_id
+    private_subnets                    = var.private_subnets
+    cluster_endpoint                   = component.eks[each.value].cluster_endpoint
+    cluster_version                    = component.eks[each.value].cluster_version
+    oidc_provider_arn                  = component.eks[each.value].oidc_provider_arn
     cluster_certificate_authority_data = component.eks[each.value].cluster_certificate_authority_data
-    oidc_binding_id = component.k8s-rbac[each.value].oidc_binding_id
+    oidc_binding_id                    = component.k8s-rbac[each.value].oidc_binding_id
   }
 
   providers = {
-    kubernetes  = provider.kubernetes.oidc_configurations[each.value]
-    helm  = provider.helm.oidc_configurations[each.value]
-    aws    = provider.aws.configurations[each.value]
-    time = provider.time.this
-    random = provider.random.this
+    kubernetes = provider.kubernetes.oidc_configurations[each.value]
+    helm       = provider.helm.oidc_configurations[each.value]
+    aws        = provider.aws.configurations[each.value]
+    time       = provider.time.this
+    random     = provider.random.this
   }
 }
 
