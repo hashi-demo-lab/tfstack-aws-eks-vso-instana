@@ -83,10 +83,10 @@ provider "helm" "configurations" {
 
 provider "kubernetes" "oidc_configurations" {
   for_each = var.regions
-  config { 
+  config {
     host                   = component.eks[each.value].cluster_endpoint
     cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
-    token   = var.k8s_identity_token
+    token                  = var.k8s_identity_token
   }
 }
 
@@ -96,7 +96,7 @@ provider "helm" "oidc_configurations" {
     kubernetes {
       host                   = component.eks[each.value].cluster_endpoint
       cluster_ca_certificate = base64decode(component.eks[each.value].cluster_certificate_authority_data)
-      token   = var.k8s_identity_token
+      token                  = var.k8s_identity_token
     }
   }
 }

@@ -50,8 +50,8 @@ deployment_group "dev_group_pranit" {
 deployment_auto_approve "safe_dev_plans" {
   check {
     # This rule only passes if no resources are being deleted.
-    condition     = context.plan.changes.remove == 0
-    reason        = "Plan has ${context.plan.changes.remove} resources to be removed. Manual approval required."
+    condition = context.plan.changes.remove == 0
+    reason    = "Plan has ${context.plan.changes.remove} resources to be removed. Manual approval required."
   }
 }
 
@@ -66,12 +66,12 @@ deployment "eks-team1-simon-dev" {
     # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
 
     vpc_id          = "vpc-078cb1d7b6ed781eb"
-    private_subnets = ["subnet-04183d2a87d1d9b5a","subnet-028b7528f2e09d2af","subnet-0f573d24383ac66e9"]
+    private_subnets = ["subnet-04183d2a87d1d9b5a", "subnet-028b7528f2e09d2af", "subnet-0f573d24383ac66e9"]
 
     #EKS Cluster
     kubernetes_version = "1.34"
     cluster_name       = "eks-team1-dev1"
-    enable_irsa       = true
+    enable_irsa        = true
 
     #EKS OIDC
     tfc_kubernetes_audience   = "k8s.workload.identity"
@@ -99,7 +99,7 @@ deployment "eks-team2-jessica-dev" {
     # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
 
     vpc_id          = "vpc-0819bfc17f32c7029"
-    private_subnets = ["subnet-00a17be3b7e472148","subnet-079327335a02c1d41","subnet-0833c0c015c6e6e7b"]
+    private_subnets = ["subnet-00a17be3b7e472148", "subnet-079327335a02c1d41", "subnet-0833c0c015c6e6e7b"]
 
     #EKS Cluster
     kubernetes_version = "1.34"
@@ -168,7 +168,7 @@ deployment "eks-team3-pranit-dev" {
     # private_subnets = upstream_input.landingzone_stack.private_subnets_team3
 
     vpc_id          = "vpc-013867fc705b10e20"
-    private_subnets = ["subnet-03bad7eca01c07ccd","subnet-0154270c024edd15f","subnet-05c52c563a4ca9e17"]
+    private_subnets = ["subnet-03bad7eca01c07ccd", "subnet-0154270c024edd15f", "subnet-05c52c563a4ca9e17"]
 
     #EKS Cluster
     kubernetes_version = "1.34"
@@ -188,5 +188,5 @@ deployment "eks-team3-pranit-dev" {
 
   }
   #Uncomment to destroy the deployment
-  # destroy = true
+  destroy = true
 }
