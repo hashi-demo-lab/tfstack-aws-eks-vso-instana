@@ -171,7 +171,7 @@ deployment "eks-team3-pranit-dev" {
     private_subnets = ["subnet-03bad7eca01c07ccd", "subnet-0154270c024edd15f", "subnet-05c52c563a4ca9e17"]
 
     #EKS Cluster
-    kubernetes_version = "1.34"
+    kubernetes_version = "1.32"
     cluster_name       = "eks-team3-pranit-dev"
     enable_irsa        = true
 
@@ -188,5 +188,5 @@ deployment "eks-team3-pranit-dev" {
 
   }
   #Uncomment to destroy the deployment
-  destroy = true
+  #destroy = true
 }
