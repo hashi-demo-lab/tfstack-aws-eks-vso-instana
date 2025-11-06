@@ -79,6 +79,9 @@ resource "helm_release" "ibm_kubecost" {
       }
       # Set resource limits for cost-analyzer
       costAnalyzer = {
+        persistentVolume = {
+          enabled = false  # Disable persistent storage for cost-analyzer
+        }
         resources = {
           limits = {
             cpu    = "500m"
