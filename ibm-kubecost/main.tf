@@ -6,10 +6,10 @@ resource "helm_release" "ibm_kubecost" {
   namespace  = "kubecost"
   create_namespace = true
   
-  timeout       = 600  # 10 minutes timeout
-  wait          = true
-  wait_for_jobs = true
-  atomic        = true  # Rollback on failure
+  timeout       = 900  # 15 minutes timeout
+  wait          = false  # Don't wait for pods to be ready
+  wait_for_jobs = false
+  # atomic        = true  # Removed to prevent auto-rollback for debugging
 
   values = [
     yamlencode({
@@ -21,6 +21,10 @@ resource "helm_release" "ibm_kubecost" {
       }
       kubecostProductConfigs = {
         clusterName = var.cluster_name
+      }
+      # Disable ALL persistent volumes globally
+      persistentVolume = {
+        enabled = false
       }
       # Enable Prometheus with minimal resources
       prometheus = {
@@ -77,7 +81,7 @@ resource "helm_release" "ibm_kubecost" {
       grafana = {
         enabled = false
       }
-      # Set resource limits for cost-analyzer
+      # Set resource limits for cost-analyzer and disable its PV
       costAnalyzer = {
         persistentVolume = {
           enabled = false  # Disable persistent storage for cost-analyzer
@@ -91,6 +95,12 @@ resource "helm_release" "ibm_kubecost" {
             cpu    = "100m"
             memory = "256Mi"
           }
+        }
+      }
+      # Explicitly disable kubecost-model PV
+      kubecostModel = {
+        persistentVolume = {
+          enabled = false
         }
       }
     })
