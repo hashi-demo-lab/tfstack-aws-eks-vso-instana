@@ -117,6 +117,12 @@ deployment "eks-team2-jessica-dev" {
     k8s_identity_token = identity_token.k8s.jwt
     namespace          = "application"
 
+    # #Instana
+    # instana_cluster_name  = "eks-team2-jessica-dev"
+    # instana_agent_key     = "kIeQzokiRMMItFWjamys_w"
+    # instana_endpoint_host = "ingress-blue-saas.instana.io"
+    # instana_endpoint_port = 443
+
   }
   destroy = false
 }

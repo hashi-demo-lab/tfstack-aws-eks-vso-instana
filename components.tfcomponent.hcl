@@ -157,7 +157,7 @@ removed {
   from     = component.k8s-addons-instana[each.key]
 
   providers = {
-    kubernetes = provider.kubernetes.oidc_configurations[each.value]
-    helm       = provider.helm.oidc_configurations[each.value]
+    kubernetes = provider.kubernetes.configurations[each.value]
+    helm       = provider.helm.configurations[each.value]
   }
 }
