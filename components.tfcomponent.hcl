@@ -97,27 +97,38 @@ component "k8s-addons" {
 }
 
 # #K8s addon - IBM Instana
-# component "k8s-addons-instana" {
-#   for_each = var.regions
+component "k8s-addons-instana" {
+  for_each = var.regions
 
-#   source = "./ibm-instana"
+  source = "./ibm-instana"
 
-#   inputs = {
-#     cluster_name                       = component.eks[each.value].cluster_name
-#     cluster_endpoint                   = component.eks[each.value].cluster_endpoint
-#     cluster_certificate_authority_data = component.eks[each.value].cluster_certificate_authority_data
-#     instana_agent_key                  = var.instana_agent_key
-#     instana_cluster_name               = var.instana_cluster_name
-#     instana_endpoint_host              = var.instana_endpoint_host
-#     instana_endpoint_port              = var.instana_endpoint_port
-#     # addon_version                       = var.instana_addon_version
-#   }
+  inputs = {
+    cluster_name                       = component.eks[each.value].cluster_name
+    cluster_endpoint                   = component.eks[each.value].cluster_endpoint
+    cluster_certificate_authority_data = component.eks[each.value].cluster_certificate_authority_data
+    instana_agent_key                  = var.instana_agent_key
+    instana_cluster_name               = var.instana_cluster_name
+    instana_endpoint_host              = var.instana_endpoint_host
+    instana_endpoint_port              = var.instana_endpoint_port
+    # addon_version                       = var.instana_addon_version
+  }
 
-#   providers = {
-#     kubernetes = provider.kubernetes.oidc_configurations[each.value]
-#     helm       = provider.helm.oidc_configurations[each.value]
-#   }
-# }
+  providers = {
+    kubernetes = provider.kubernetes.oidc_configurations[each.value]
+    helm       = provider.helm.oidc_configurations[each.value]
+  }
+}
+
+component "k8s-addons-kubecost" {
+  for_each = var.regions
+
+  source = "./ibm-kubecost"
+
+  providers = {
+    kubernetes = provider.kubernetes.oidc_configurations[each.value]
+    helm       = provider.helm.oidc_configurations[each.value]
+  }
+}
 
 # # Namespace
 # component "k8s-namespace" {
@@ -151,13 +162,13 @@ component "k8s-addons" {
 #   }
 # }
 
-removed {
-  for_each = var.regions
-  source   = "./ibm-instana"
-  from     = component.k8s-addons-instana[each.key]
+# removed {
+#   for_each = var.regions
+#   source   = "./ibm-instana"
+#   from     = component.k8s-addons-instana[each.key]
 
-  providers = {
-    kubernetes = provider.kubernetes.configurations[each.value]
-    helm       = provider.helm.configurations[each.value]
-  }
-}
+#   providers = {
+#     kubernetes = provider.kubernetes.configurations[each.value]
+#     helm       = provider.helm.configurations[each.value]
+#   }
+# }

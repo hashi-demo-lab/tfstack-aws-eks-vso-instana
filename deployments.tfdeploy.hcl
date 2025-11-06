@@ -201,5 +201,5 @@ deployment "eks-team3-pranit-dev" {
 
   }
   #Uncomment to destroy the deployment
-  destroy = true
+  # destroy = true
 }
