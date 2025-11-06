@@ -7,6 +7,9 @@ resource "helm_release" "ibm_kubecost" {
 
   values = [
     yamlencode({
+      global = {
+        clusterId = var.cluster_name
+      }
       # kubecostProductConfigs = {
       #   global = {
       #     kubecostToken = var.kubecost_token

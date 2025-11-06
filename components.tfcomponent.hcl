@@ -124,6 +124,10 @@ component "k8s-addons-kubecost" {
 
   source = "./ibm-kubecost"
 
+  inputs = {
+    cluster_name = component.eks[each.value].cluster_name
+  }
+
   providers = {
     kubernetes = provider.kubernetes.oidc_configurations[each.value]
     helm       = provider.helm.oidc_configurations[each.value]
