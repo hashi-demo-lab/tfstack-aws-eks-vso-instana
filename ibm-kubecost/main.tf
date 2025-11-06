@@ -2,6 +2,7 @@ resource "helm_release" "ibm_kubecost" {
   name       = "kubecost"
   repository = "https://kubecost.github.io/cost-analyzer/"
   chart      = "cost-analyzer"
+  version    = "2.4.3"  # Use a stable version before 2.9.x
   namespace  = "kubecost"
   create_namespace = true
 
@@ -10,11 +11,10 @@ resource "helm_release" "ibm_kubecost" {
       global = {
         clusterId = var.cluster_name
       }
-      # kubecostProductConfigs = {
-      #   global = {
-      #     kubecostToken = var.kubecost_token
-      #   }
-      # }
+      # For Kubecost 2.9.x, cluster_id must be set in both global and kubecostProductConfigs
+      kubecostProductConfigs = {
+        clusterName = var.cluster_name
+      }
       prometheus = {
         enabled = false
       }
