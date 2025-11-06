@@ -187,8 +187,8 @@ deployment "eks-team3-pranit-dev" {
     namespace          = "application"
 
     #Instana
-    instana_cluster_name = "eks-team3-pranit-dev"
-    instana_agent_key    = "kIeQzokiRMMItFWjamys_w"
+    instana_cluster_name  = "eks-team3-pranit-dev"
+    instana_agent_key     = "kIeQzokiRMMItFWjamys_w"
     instana_endpoint_host = "ingress-blue-saas.instana.io"
     instana_endpoint_port = 443
     # addon_version      = "v2.0.22-eksbuild.1"
