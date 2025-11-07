@@ -209,7 +209,7 @@ deployment "eks-team3-pranit-dev" {
 
     #Instana
     instana_cluster_name  = "eks-team3-pranit-dev"
-    instana_agent_key     = store.varset.tfstacks_vars_instana.stable.instana_key
+    instana_agent_key     = store.varset.stacks_instana_config.stable.instana_key
     instana_endpoint_host = "ingress-blue-saas.instana.io"
     instana_endpoint_port = 443
     # addon_version      = "v2.0.22-eksbuild.1"
