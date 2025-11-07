@@ -37,7 +37,10 @@ variable "aws_auth_roles" {
 }
 
 variable "role_arn" {
-  type = string
+  type        = string
+  description = "ARN of the IAM role to assume for AWS operations. Value provided by 'tfstacks_vars_role_arn' variable set in hackathon project"
+  # sensitive   = true
+  # ephemeral   = true  # Required 
 }
 
 variable "kubernetes_version" {

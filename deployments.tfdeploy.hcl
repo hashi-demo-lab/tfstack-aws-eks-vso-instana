@@ -14,12 +14,19 @@ identity_token "aws_team3" {
 identity_token "k8s_team3" {
   audience = ["k8s.workload.identity"]
 }
-###
 
-# upstream_input "landingzone_stack" {
-#   type   = "stack"
-#   source = "app.terraform.io/hashi-demos-apj/hackathon/tfstack-aws-landing-zone"
-# }
+# Access the 'tfstacks_vars_role_arn' variable set to retrieve role_arn
+store "varset" "stacks_role_config" {
+  name     = "tfstacks_vars_role_arn"
+  category = "terraform"
+}
+
+# Access the IBM Instana License Key from variables set  
+
+upstream_input "landingzone_stack" {
+  type   = "stack"
+  source = "app.terraform.io/hashi-demos-apj/hackathon/tfstack-aws-landing-zone"
+}
 
 
 # ----------------------------------------------------
@@ -59,8 +66,9 @@ deployment "eks-team1-simon-dev" {
   deployment_group = deployment_group.dev_group_simon
   inputs = {
     aws_identity_token = identity_token.aws.jwt
-    role_arn           = "arn:aws:iam::855831148133:role/tfstacks-role"
-    regions            = ["ap-southeast-2"]
+    # role_arn           = "arn:aws:iam::855831148133:role/tfstacks-role"
+    role_arn = store.varset.stacks_role_config.stable.vpc-team1-simon-dev_role_arn
+    regions  = ["ap-southeast-2"]
 
     # vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
     # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
@@ -92,8 +100,9 @@ deployment "eks-team2-jessica-dev" {
   deployment_group = deployment_group.dev_group_jessica
   inputs = {
     aws_identity_token = identity_token.aws.jwt
-    role_arn           = "arn:aws:iam::034362039150:role/stacks-jessicaorg-ahm-hackathon"
-    regions            = ["ap-southeast-1"]
+    # role_arn           = "arn:aws:iam::034362039150:role/stacks-jessicaorg-ahm-hackathon"
+    role_arn = store.varset.stacks_role_config.stable.vpc-team2-jessica-dev_role_arn
+    regions  = ["ap-southeast-1"]
 
     # vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
     # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
@@ -167,8 +176,9 @@ deployment "eks-team3-pranit-dev" {
   deployment_group = deployment_group.dev_group_pranit
   inputs = {
     aws_identity_token = identity_token.aws_team3.jwt
-    role_arn           = "arn:aws:iam::124355636080:role/Terraform-service-account-role"
-    regions            = ["ap-south-1"]
+    # role_arn           = "arn:aws:iam::124355636080:role/Terraform-service-account-role"
+    role_arn = store.varset.stacks_role_config.stable.vpc-team3-pranit-dev_role_arn
+    regions  = ["ap-south-1"]
 
     # vpc_id          = upstream_input.landingzone_stack.vpc_id_team3
     # private_subnets = upstream_input.landingzone_stack.private_subnets_team3
@@ -194,7 +204,7 @@ deployment "eks-team3-pranit-dev" {
 
     #Instana
     instana_cluster_name  = "eks-team3-pranit-dev"
-    instana_agent_key     = "kIeQzokiRMMItFWjamys_w"
+    instana_agent_key     = store.varset.tfstacks_vars_instana.stable.instana_key
     instana_endpoint_host = "ingress-blue-saas.instana.io"
     instana_endpoint_port = 443
     # addon_version      = "v2.0.22-eksbuild.1"
