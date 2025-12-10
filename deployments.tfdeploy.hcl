@@ -185,11 +185,11 @@ deployment "eks-team3-pranit-dev" {
     role_arn = store.varset.stacks_role_config.stable.vpc-team3-pranit-dev_role_arn
     regions  = ["ap-south-1"]
 
-    vpc_id          = upstream_input.landingzone_stack.vpc_id_team3
-    private_subnets = upstream_input.landingzone_stack.private_subnets_team3
+    # vpc_id          = upstream_input.landingzone_stack.vpc_id_team3
+    # private_subnets = upstream_input.landingzone_stack.private_subnets_team3
 
-    # vpc_id          = "vpc-013867fc705b10e20"
-    # private_subnets = ["subnet-03bad7eca01c07ccd", "subnet-0154270c024edd15f", "subnet-05c52c563a4ca9e17"]
+    vpc_id          = "vpc-013867fc705b10e20"
+    private_subnets = ["subnet-03bad7eca01c07ccd", "subnet-0154270c024edd15f", "subnet-05c52c563a4ca9e17"]
 
     #EKS Cluster
     kubernetes_version = "1.32"
