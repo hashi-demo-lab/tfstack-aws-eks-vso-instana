@@ -75,11 +75,11 @@ deployment "eks-team1-simon-dev" {
     role_arn = store.varset.stacks_role_config.stable.vpc-team1-simon-dev_role_arn
     regions  = ["ap-southeast-2"]
 
-    vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
-    private_subnets = upstream_input.landingzone_stack.private_subnets_team1
+    # vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
+    # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
 
-    # vpc_id          = "vpc-078cb1d7b6ed781eb"
-    # private_subnets = ["subnet-04183d2a87d1d9b5a", "subnet-028b7528f2e09d2af", "subnet-0f573d24383ac66e9"]
+    vpc_id          = "vpc-078cb1d7b6ed781eb"
+    private_subnets = ["subnet-04183d2a87d1d9b5a", "subnet-028b7528f2e09d2af", "subnet-0f573d24383ac66e9"]
 
     #EKS Cluster
     kubernetes_version = "1.34"
@@ -109,11 +109,11 @@ deployment "eks-team2-jessica-dev" {
     role_arn = store.varset.stacks_role_config.stable.vpc-team2-jessica-dev_role_arn
     regions  = ["ap-southeast-1"]
 
-    vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
-    private_subnets = upstream_input.landingzone_stack.private_subnets_team1
+    # vpc_id          = upstream_input.landingzone_stack.vpc_id_team1
+    # private_subnets = upstream_input.landingzone_stack.private_subnets_team1
 
-    # vpc_id          = "vpc-0819bfc17f32c7029"
-    # private_subnets = ["subnet-00a17be3b7e472148", "subnet-079327335a02c1d41", "subnet-0833c0c015c6e6e7b"]
+    vpc_id          = "vpc-0819bfc17f32c7029"
+    private_subnets = ["subnet-00a17be3b7e472148", "subnet-079327335a02c1d41", "subnet-0833c0c015c6e6e7b"]
 
     #EKS Cluster
     kubernetes_version = "1.34"
